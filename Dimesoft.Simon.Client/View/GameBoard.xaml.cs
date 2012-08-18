@@ -29,7 +29,7 @@ namespace Dimesoft.Simon.Client.View
 
             DataContext = new GameBoardViewModel();
 
-            TopLeftButton.ButtonColor = Colors.Red;
+            TopLeftButton.ButtonColor = Colors.Green;
             TopRightButton.ButtonColor = Colors.Red;
             BottomRightButton.ButtonColor = Colors.Blue;
             BottomLeftButton.ButtonColor = Colors.Yellow;
@@ -43,6 +43,11 @@ namespace Dimesoft.Simon.Client.View
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
 
+        }
+
+        private void BottomRightButton_Click_1(object sender, RoutedEventArgs e)
+        {
+            this.BottomRightButton.IsLit = true;
         }
     }
 }
