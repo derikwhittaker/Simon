@@ -34,6 +34,7 @@ namespace Dimesoft.Simon.Client.ViewModel
         {
             _gameBoardEngine = new GameBoard();
             _gameBoardEngine.GameClockChanged += (s, i) => { GameDuration = new TimeSpan(0, 0, 0, i).ToString("g"); };
+
         }
 
         #region Commands

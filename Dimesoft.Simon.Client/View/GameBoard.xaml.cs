@@ -33,6 +33,7 @@ namespace Dimesoft.Simon.Client.View
             TopRightButton.ButtonColor = Colors.Red;
             BottomRightButton.ButtonColor = Colors.Blue;
             BottomLeftButton.ButtonColor = Colors.Yellow;
+
         }
 
         /// <summary>
