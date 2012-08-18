@@ -9,7 +9,23 @@ namespace Dimesoft.Simon.Domain.Tests.Engine
     {
 
         [TestMethod]
-        public void LastMoveIndex_WhenMoveMade_WillIncrementIndex()
+        public void LastMoveIndex_WhenMoveMade_WhenValid_WillIncrementIndex()
+        {
+            var moveManager = new MoveManager(new MoveGenerator());
+
+            var originalIndex = moveManager.LastMoveIndex;
+
+            moveManager.AddMove(GameTile.TopLeft);
+
+            moveManager.MakeMove(GameTile.TopLeft);
+
+            var updatedIndex = moveManager.LastMoveIndex;
+
+            Assert.AreNotEqual(originalIndex, updatedIndex);
+        }
+
+        [TestMethod]
+        public void LastMoveIndex_WhenMoveMade_WhenInValid_WillNotIncrementIndex()
         {
             var moveManager = new MoveManager(new MoveGenerator());
 
@@ -21,7 +37,7 @@ namespace Dimesoft.Simon.Domain.Tests.Engine
 
             var updatedIndex = moveManager.LastMoveIndex;
 
-            Assert.AreNotEqual(originalIndex, updatedIndex);
+            Assert.AreEqual(originalIndex, updatedIndex);
         }
 
         [TestMethod]
@@ -97,7 +113,6 @@ namespace Dimesoft.Simon.Domain.Tests.Engine
 
             Assert.AreEqual(MoveResult.Valid, result1);
             Assert.AreEqual(MoveResult.InValid, result2);
-            Assert.AreEqual(MoveResult.Valid, result3);
         }
 
         [TestMethod]

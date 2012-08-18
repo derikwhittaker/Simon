@@ -6,18 +6,11 @@ namespace Dimesoft.Simon.Domain.Engine
 {
     public class GameBoard
     {
-        private GameLevel _currentGameLevel = new GameLevel() ;
         private DifficultyLevel _currentDifficultyLevel = DifficultyLevel.Unknown;
         private IDictionary<Player, IMoveManager> _players = new Dictionary<Player, IMoveManager>();
-
-        public GameBoard()
-        {
-            
-        }
-
+        
         public void Initialize()
         {
-            CurrentGameLevel.Reset();
             Players = new Dictionary<Player, IMoveManager>();
         }
 
@@ -28,7 +21,9 @@ namespace Dimesoft.Simon.Domain.Engine
 
             var moveManager = GetMoveManager(player);
 
-            return moveManager.MakeMove(gameTile);
+            var moveResult = moveManager.MakeMove(gameTile);
+            
+            return moveResult;
         }
 
         public IList<GameTile> GetMoveList(Player player)
@@ -37,7 +32,7 @@ namespace Dimesoft.Simon.Domain.Engine
 
             var moveManager = GetMoveManager(player);
 
-            return null;
+            return moveManager.GetSequence();
         }
 
         public void SetupBoard(IList<Player> players, DifficultyLevel difficultyLevel )
@@ -61,13 +56,7 @@ namespace Dimesoft.Simon.Domain.Engine
             get { return _players; }
             private set { _players = value; }
         }
-
-        public GameLevel CurrentGameLevel
-        {
-            get { return _currentGameLevel; }
-            private set { _currentGameLevel = value; }
-        }
-
+        
         public DifficultyLevel CurrentDifficultyLevel
         {
             get { return _currentDifficultyLevel; }

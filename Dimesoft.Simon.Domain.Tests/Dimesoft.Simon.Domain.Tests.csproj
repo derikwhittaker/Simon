@@ -112,7 +112,7 @@
     <Compile Include="Engine\GameBoardTests.cs" />
     <Compile Include="Engine\MoveGeneratorTests.cs" />
     <Compile Include="Engine\MoveManagerTests.cs" />
-    <Compile Include="Model\GameLevelTests.cs" />
+    <Compile Include="LongRunning\GameBoardTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -140,6 +140,9 @@
       <Project>{24f7d74c-54e1-4907-8c33-fd75150e813f}</Project>
       <Name>Dimesoft.Simon.Domain</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Model\" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '11.0' ">
     <VisualStudioVersion>11.0</VisualStudioVersion>

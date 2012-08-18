@@ -29,11 +29,11 @@ namespace Dimesoft.Simon.Domain.Engine
         public MoveResult MakeMove( GameTile move )
         {
             var gameSequence = GameSequence[LastMoveIndex];
-
-            LastMoveIndex++;
-
+            
             if ( gameSequence == move )
             {
+                LastMoveIndex++;
+
                 return MoveResult.Valid;
             }
 

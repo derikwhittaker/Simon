@@ -43,6 +43,22 @@ namespace Dimesoft.Simon.Domain.Tests.Engine
         }
 
         [TestMethod]
+        public void HandleMove_WhenMoveValid_WillReturnCorrectResult()
+        {
+            var player = new Player { Id = 1 };
+            var gameBoard = new GameBoard();
+
+            gameBoard.SetupBoard(new List<Player> { player }, DifficultyLevel.Medium);
+            var moveList = gameBoard.GetMoveList(player);
+
+            var moveResult = gameBoard.HandleMove(player, moveList.Last());
+
+
+            Assert.AreEqual(MoveResult.Valid, moveResult);
+        }
+
+
+        [TestMethod]
         public void SetupBoard_WhenOnePlayer_WillSetupBoardCorrectly()
         {
             var gameBoard = new GameBoard();
