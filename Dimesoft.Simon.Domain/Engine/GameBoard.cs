@@ -8,12 +8,17 @@ namespace Dimesoft.Simon.Domain.Engine
     {
         private GameLevel _currentGameLevel = new GameLevel() ;
         private DifficultyLevel _currentDifficultyLevel = DifficultyLevel.Unknown;
-        private IDictionary<Player, MoveManager> _players = new Dictionary<Player, MoveManager>();
+        private IDictionary<Player, IMoveManager> _players = new Dictionary<Player, IMoveManager>();
+
+        public GameBoard()
+        {
+            
+        }
 
         public void Initialize()
         {
             CurrentGameLevel.Reset();
-            Players = new Dictionary<Player, MoveManager>();
+            Players = new Dictionary<Player, IMoveManager>();
         }
 
         public MoveResult HandleMove(Player player, GameTile gameTile )
@@ -26,6 +31,15 @@ namespace Dimesoft.Simon.Domain.Engine
             return moveManager.MakeMove(gameTile);
         }
 
+        public IList<GameTile> GetMoveList(Player player)
+        {
+            if (player == null) { throw new ArgumentNullException("Players was null"); }
+
+            var moveManager = GetMoveManager(player);
+
+            return null;
+        }
+
         public void SetupBoard(IList<Player> players, DifficultyLevel difficultyLevel )
         {
             if (players == null) { throw new ArgumentNullException("Players was null"); }
@@ -36,13 +50,13 @@ namespace Dimesoft.Simon.Domain.Engine
 
             foreach (var player in players)
             {
-                Players.Add(player, new MoveManager());
+                Players.Add(player, new MoveManager( new MoveGenerator() ));
             }
 
             CurrentDifficultyLevel = difficultyLevel;
         }
 
-        public IDictionary<Player, MoveManager> Players
+        public IDictionary<Player, IMoveManager> Players
         {
             get { return _players; }
             private set { _players = value; }
@@ -60,7 +74,7 @@ namespace Dimesoft.Simon.Domain.Engine
             private set { _currentDifficultyLevel = value; }
         }
 
-        private MoveManager GetMoveManager(Player player)
+        private IMoveManager GetMoveManager(Player player)
         {
             if (player == null) { throw new ArgumentNullException("Player was null"); }
 

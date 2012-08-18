@@ -3,10 +3,20 @@ using Dimesoft.Simon.Domain.Model;
 
 namespace Dimesoft.Simon.Domain.Engine
 {
-    public class MoveManager
+    public interface IMoveManager
     {
-        public MoveManager()
+        MoveResult MakeMove( GameTile move );
+        IList<GameTile> GetSequence();
+        int LastMoveIndex { get; }
+    }
+
+    public class MoveManager : IMoveManager
+    {
+        private readonly IMoveGenerator _moveGenerator;
+
+        public MoveManager( IMoveGenerator moveGenerator )
         {
+            _moveGenerator = moveGenerator;
             GameSequence = new List<GameTile>();
             LastMoveIndex = 0;
         }
@@ -28,6 +38,15 @@ namespace Dimesoft.Simon.Domain.Engine
             }
 
             return MoveResult.InValid;
+        }
+
+        public IList<GameTile> GetSequence()
+        {
+            var nextMove = _moveGenerator.Generate();
+
+            AddMove(nextMove);
+
+            return GameSequence;
         }
 
         public IList<GameTile> GameSequence { get; private set; }

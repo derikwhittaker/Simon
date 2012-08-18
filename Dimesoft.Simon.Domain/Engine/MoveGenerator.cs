@@ -5,7 +5,12 @@ using Dimesoft.Simon.Domain.Model;
 
 namespace Dimesoft.Simon.Domain.Engine
 {
-    public class MoveGenerator
+    public interface IMoveGenerator
+    {
+        GameTile Generate();
+    }
+
+    public class MoveGenerator : IMoveGenerator
     {
         public const int MaxMovesToGenerate = 400;
         private IList<GameTile> _possibleMoves;

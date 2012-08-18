@@ -11,7 +11,7 @@ namespace Dimesoft.Simon.Domain.Tests.Engine
         [TestMethod]
         public void LastMoveIndex_WhenMoveMade_WillIncrementIndex()
         {
-            var moveManager = new MoveManager();
+            var moveManager = new MoveManager(new MoveGenerator());
 
             var originalIndex = moveManager.LastMoveIndex;
 
@@ -27,7 +27,7 @@ namespace Dimesoft.Simon.Domain.Tests.Engine
         [TestMethod]
         public void AddSequence_WillAddItemToList()
         {
-            var moveManager = new MoveManager();
+            var moveManager = new MoveManager(new MoveGenerator());
 
             moveManager.AddMove(GameTile.BottomRight);
 
@@ -37,7 +37,7 @@ namespace Dimesoft.Simon.Domain.Tests.Engine
         [TestMethod]
         public void MakeMove_WhenMoveIsValid_WillReturnCorrectResult()
         {
-            var moveManager = new MoveManager();
+            var moveManager = new MoveManager(new MoveGenerator());
 
             moveManager.AddMove(GameTile.BottomRight);
             moveManager.AddMove(GameTile.BottomRight);
@@ -52,7 +52,7 @@ namespace Dimesoft.Simon.Domain.Tests.Engine
         [TestMethod]
         public void MakeMove_WhenMoveIsNotValid_WillReturnCorrectResult()
         {
-            var moveManager = new MoveManager();
+            var moveManager = new MoveManager(new MoveGenerator());
 
             moveManager.AddMove(GameTile.BottomRight);
             moveManager.AddMove(GameTile.BottomRight);
@@ -67,7 +67,7 @@ namespace Dimesoft.Simon.Domain.Tests.Engine
         [TestMethod]
         public void MakeMove_WhenMultipleMoves_WillAllBeValud()
         {
-            var moveManager = new MoveManager();
+            var moveManager = new MoveManager(new MoveGenerator());
 
             moveManager.AddMove(GameTile.BottomRight);
             moveManager.AddMove(GameTile.BottomRight);
@@ -85,7 +85,7 @@ namespace Dimesoft.Simon.Domain.Tests.Engine
         [TestMethod]
         public void MakeMove_WhenMultipleMoves_MiddleWillBeInvalid()
         {
-            var moveManager = new MoveManager();
+            var moveManager = new MoveManager(new MoveGenerator());
 
             moveManager.AddMove(GameTile.BottomRight);
             moveManager.AddMove(GameTile.BottomRight);
@@ -98,6 +98,35 @@ namespace Dimesoft.Simon.Domain.Tests.Engine
             Assert.AreEqual(MoveResult.Valid, result1);
             Assert.AreEqual(MoveResult.InValid, result2);
             Assert.AreEqual(MoveResult.Valid, result3);
+        }
+
+        [TestMethod]
+        public void GetSequence_WillAddNewItemToList()
+        {
+            var moveManager = new MoveManager(new MoveGenerator());
+
+            var sequence = moveManager.GetSequence();
+
+            Assert.AreEqual(1, sequence.Count);
+        }
+
+
+        [TestMethod]
+        public void GetSequence_WhenCalledMultipleTimes_WillAddNewItemsToList()
+        {
+            var moveManager = new MoveManager(new MoveGenerator());
+
+            var sequence1 = moveManager.GetSequence();
+            Assert.AreEqual(1, sequence1.Count);
+
+            var sequence2 = moveManager.GetSequence();
+            Assert.AreEqual(2, sequence2.Count);
+
+            var sequence3 = moveManager.GetSequence();
+            Assert.AreEqual(3, sequence3.Count);
+
+            var sequence4 = moveManager.GetSequence();
+            Assert.AreEqual(4, sequence4.Count);
         }
     }
 }
