@@ -14,14 +14,26 @@
                                   />
         <Controls:LightButton x:Name="TopRightButton"
                      Margin="0,35,35,0" HorizontalAlignment="Right" VerticalAlignment="Top"
-                                  />
+                                  >
+            <Controls:LightButton.RenderTransform>
+                <CompositeTransform ScaleX="-1" TranslateX="614" />
+            </Controls:LightButton.RenderTransform>
+        </Controls:LightButton>
         <Controls:LightButton x:Name="BottomRightButton"
                      Margin="0,0,35,35" HorizontalAlignment="Right" VerticalAlignment="Bottom"
-                                  />
+                                  >
+            <Controls:LightButton.RenderTransform>
+                <CompositeTransform ScaleX="-1" ScaleY="-1" TranslateX="614" TranslateY="320" />
+            </Controls:LightButton.RenderTransform>
+        </Controls:LightButton>
 
         <Controls:LightButton x:Name="BottomLeftButton"
                      Margin="35,0,0,35" HorizontalAlignment="Left" VerticalAlignment="Bottom"
-                                  />
+                                  >
+            <Controls:LightButton.RenderTransform>
+                <CompositeTransform ScaleY="-1" TranslateY="320" />
+            </Controls:LightButton.RenderTransform>
+        </Controls:LightButton>
 
         <Grid x:Name="StatusScreen" HorizontalAlignment="Center" VerticalAlignment="Center">
             <Rectangle Fill="White" Height="100" Width="100" />

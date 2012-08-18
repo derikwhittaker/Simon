@@ -25,6 +25,11 @@ namespace Dimesoft.Simon.Client.View
         public GameBoard()
         {
             this.InitializeComponent();
+
+            TopLeftButton.ButtonColor = Colors.Red;
+            TopRightButton.ButtonColor = Colors.Red;
+            BottomRightButton.ButtonColor = Colors.Blue;
+            BottomLeftButton.ButtonColor = Colors.Yellow;
         }
 
         /// <summary>
@@ -34,10 +39,7 @@ namespace Dimesoft.Simon.Client.View
         /// property is typically used to configure the page.</param>
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            TopLeftButton.ButtonColor = Colors.Green;
-            TopRightButton.ButtonColor = Colors.Red;
-            BottomRightButton.ButtonColor = Colors.Blue;
-            BottomLeftButton.ButtonColor = Colors.Yellow;
+
         }
     }
 }
