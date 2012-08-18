@@ -24,19 +24,33 @@ namespace Dimesoft.Simon.Client.Controls
 
 
 
+
         public bool IsLit
         {
-            set 
+            get { return (bool)GetValue(IsLitProperty); }
+            set { SetValue(IsLitProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for IsLit.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty IsLitProperty =
+            DependencyProperty.Register("IsLit", typeof(bool), typeof(LightButton), new PropertyMetadata(false));
+
+        
+        public static void IsLitChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
+        {
+            if(sender is LightButton)
             {
-                
-                if (value)
+                var Sender = (LightButton)sender;
+
+                if (e.NewValue != null && (bool)e.NewValue)
                 {
-                    VisualStateManager.GoToState(this, "Lit", true);
+                    VisualStateManager.GoToState(Sender, "Lit", true);
                 }
                 else
                 {
-                    VisualStateManager.GoToState(this, "Normal", true);
+                    VisualStateManager.GoToState(Sender, "Normal", true);
                 }
+
             }
         }
      
