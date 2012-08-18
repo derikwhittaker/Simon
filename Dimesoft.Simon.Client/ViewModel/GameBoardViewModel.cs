@@ -157,8 +157,8 @@ namespace Dimesoft.Simon.Client.ViewModel
                         break;
                 }
 
-                Debug.WriteLine("Ticks {0}", DateTime.Now.Ticks);
-                Task.Delay(200);
+                Debug.WriteLine("Ticks {0} Move {1}", DateTime.Now.Ticks, move);
+                Task.Delay(400);
             }
         }
 
@@ -176,6 +176,9 @@ namespace Dimesoft.Simon.Client.ViewModel
                 if ( result.IsAtEndOfSequence )
                 {
                     _gameBoardEngine.ResetSequenceCounter(Player);
+
+                    Task.Delay(500);
+
                     ShowPlayerSequence();
                 }
             }

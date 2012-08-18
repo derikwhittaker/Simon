@@ -46,9 +46,5 @@ namespace Dimesoft.Simon.Client.View
 
         }
 
-        private void BottomRightButton_Click_1(object sender, RoutedEventArgs e)
-        {
-            this.BottomRightButton.IsLit = true;
-        }
     }
 }

@@ -16,9 +16,8 @@
                                 <VisualState x:Name="Normal" />
                                 <VisualState x:Name="Lit">
                                     <Storyboard >
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Lightbulb" Storyboard.TargetProperty="Opacity">
-                                            <DiscreteObjectKeyFrame KeyTime="0:0:0" Value=".66" />
-                                        </ObjectAnimationUsingKeyFrames>
+                                        <DoubleAnimation Storyboard.TargetName="Lightbulb" Storyboard.TargetProperty="Opacity"
+                                                         Duration="0:0:0.2" To="75" AutoReverse="True" />
                                     </Storyboard>
                                 </VisualState>
                                 
