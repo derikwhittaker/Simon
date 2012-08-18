@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -33,6 +34,10 @@ namespace Dimesoft.Simon.Client.View
         /// property is typically used to configure the page.</param>
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
+            TopLeftButton.ButtonColor = Colors.Green;
+            TopRightButton.ButtonColor = Colors.Red;
+            BottomRightButton.ButtonColor = Colors.Blue;
+            BottomLeftButton.ButtonColor = Colors.Yellow;
         }
     }
 }

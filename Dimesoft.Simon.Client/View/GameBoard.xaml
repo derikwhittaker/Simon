@@ -9,18 +9,17 @@
     mc:Ignorable="d">
 
     <Grid Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
-        <Controls:LightButton x:Name="TopLeftButton" ButtonColor="Green" 
+        <Controls:LightButton x:Name="TopLeftButton"
                      Margin="35,35,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"
-                              IsLit="True"
                                   />
-        <Controls:LightButton x:Name="TopRightButton" ButtonColor="Red" 
+        <Controls:LightButton x:Name="TopRightButton"
                      Margin="0,35,35,0" HorizontalAlignment="Right" VerticalAlignment="Top"
                                   />
-        <Controls:LightButton x:Name="BottomRightButton" ButtonColor="Blue" 
+        <Controls:LightButton x:Name="BottomRightButton"
                      Margin="0,0,35,35" HorizontalAlignment="Right" VerticalAlignment="Bottom"
                                   />
 
-        <Controls:LightButton x:Name="BottomLeftButton" ButtonColor="Yellow" 
+        <Controls:LightButton x:Name="BottomLeftButton"
                      Margin="35,0,0,35" HorizontalAlignment="Left" VerticalAlignment="Bottom"
                                   />
 
