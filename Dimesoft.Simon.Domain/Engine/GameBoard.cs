@@ -45,7 +45,7 @@ namespace Dimesoft.Simon.Domain.Engine
                        {
                            AttemptResult = attemptResult, 
                            IsAtEndOfSequence = isAtEndOfSequence,
-                           CurrentLevel = lastMoveIndex;
+                           CurrentLevel = lastMoveIndex
                        };
         }
 
