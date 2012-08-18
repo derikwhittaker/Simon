@@ -99,9 +99,6 @@
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="Engine\GameBoard.cs" />
     <Compile Include="Engine\MoveGenerator.cs" />
     <Compile Include="Engine\MoveManager.cs" />
@@ -110,6 +107,11 @@
     <Compile Include="Model\Enums.cs" />
     <Compile Include="Model\Player.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="NotificationsExtensions">
+      <HintPath>..\packages\NotificationsExtensions\bin\Debug\NotificationsExtensions.winmd</HintPath>
+    </Reference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '11.0' ">
     <VisualStudioVersion>11.0</VisualStudioVersion>

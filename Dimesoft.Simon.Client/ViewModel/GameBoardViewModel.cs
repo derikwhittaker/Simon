@@ -35,6 +35,8 @@ namespace Dimesoft.Simon.Client.ViewModel
             _gameBoardEngine = new GameBoard();
             _gameBoardEngine.GameClockChanged += (s, i) => { GameDuration = new TimeSpan(0, 0, 0, i).ToString("g"); };
 
+            new PinManager().UpdateMainLiveTile();
+            // setup tiles
         }
 
         #region Commands
@@ -177,7 +179,7 @@ namespace Dimesoft.Simon.Client.ViewModel
                 {
                     _gameBoardEngine.ResetSequenceCounter(Player);
 
-                    Task.Delay(500);
+                    //Task.Delay(5000);
 
                     ShowPlayerSequence();
                 }

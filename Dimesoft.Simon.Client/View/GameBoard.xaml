@@ -52,6 +52,7 @@
                                HorizontalAlignment="Center" VerticalAlignment="Top"
                                Margin="0,40,0,0"
                                />
+            
             <TextBlock
                         FontFamily="Impact" FontSize="18"
                         VerticalAlignment="Center" HorizontalAlignment="Left"

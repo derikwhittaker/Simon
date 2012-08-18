@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Threading.Tasks;
+using NotificationsExtensions.TileContent;
+using Windows.ApplicationModel.Core;
+using Windows.UI.Notifications;
 using Windows.UI.StartScreen;
 
 namespace Dimesoft.Simon.Domain.Managers
@@ -12,7 +15,7 @@ namespace Dimesoft.Simon.Domain.Managers
         Task<bool> Pin(string shortName, string description, string tileId, string tileActivationArgs, string tileLogoPath, string smallTileLogoPath);
         Task<bool> UnPin(string pinnedItemId);
 
-        //void UpdateMainLiveTile();
+        void UpdateMainLiveTile();
         //void UpdateSecondaryTiles();
     }
 
@@ -55,38 +58,48 @@ namespace Dimesoft.Simon.Domain.Managers
             return false;
         }
 
-        //public async void UpdateMainLiveTile()
-        //{
-        //    var applicationTile = TileContentFactory.CreateTileWidePeekImage02(); //.CreateTileWidePeekImageAndText01();
-        //    var squareApplicationTile = TileContentFactory.CreateTileSquarePeekImageAndText01();
-        //    var tileUpdater = TileUpdateManager.CreateTileUpdaterForApplication(CoreApplication.Id);
+        public async void UpdateMainLiveTile()
+        {
+            var applicationTile = TileContentFactory.CreateTileWidePeekImageAndText02();
+            var squareApplicationTile = TileContentFactory.CreateTileSquareText03();
+            var tileUpdater = TileUpdateManager.CreateTileUpdaterForApplication(CoreApplication.Id);
 
-        //    // clear the existing tile info
-        //    tileUpdater.Clear();
+            // clear the existing tile info
+            tileUpdater.Clear();
 
-        //    var results = await _storageManager.TopLeaderBoardResultsAsync();
+            applicationTile.TextBody1.Text = "Leaders:";
+            applicationTile.TextBody2.Text = "Larry - 11 Moves";
+            applicationTile.TextBody3.Text = "Ryan  - 10 Moves";
+            applicationTile.TextBody4.Text = "Ryan  - 09 Moves";
+            applicationTile.TextBody5.Text = "Jakob - 09 Moves";
 
-        //    if (!results.Any()) { return; }
+            applicationTile.RequireSquareContent = false;
+            applicationTile.Image.Src = "/Assets/LargeTile.png";
+            applicationTile.SquareContent = squareApplicationTile;
 
-        //    var asArray = results.ToArray();
-        //    var item1 = TryGetAppTileArrayItem(asArray, 0);
-        //    var item2 = TryGetAppTileArrayItem(asArray, 1);
-        //    var item3 = TryGetAppTileArrayItem(asArray, 2);
-        //    var item4 = TryGetAppTileArrayItem(asArray, 3);
+            var tileNotification = applicationTile.CreateNotification();
+            tileUpdater.Update(tileNotification);
 
-        //    applicationTile.TextHeading.Text = "Top Scores";
-        //    applicationTile.TextBody1.Text = item1;
-        //    applicationTile.TextBody2.Text = item2;
-        //    applicationTile.TextBody3.Text = item3;
-        //    applicationTile.TextBody4.Text = item4;
+            //var applicationTile = TileContentFactory.CreateTileWideText05();
+            //var squareApplicationTile = TileContentFactory.CreateTileSquareText03();
+            //var tileUpdater = TileUpdateManager.CreateTileUpdaterForApplication(CoreApplication.Id);
 
-        //    applicationTile.RequireSquareContent = false;
-        //    applicationTile.Image.Src = "/Assets/WidePinTile.png";
-        //    applicationTile.SquareContent = squareApplicationTile;
+            //// clear the existing tile info
+            //tileUpdater.Clear();
 
-        //    var tileNotification = applicationTile.CreateNotification();
-        //    tileUpdater.Update(tileNotification);
-        //}
+            //applicationTile.TextBody1.Text = "Leaders:";
+            //applicationTile.TextBody1.Text = "Larry - 13 Moves";
+            //applicationTile.TextBody2.Text = "Larry - 11 Moves";
+            //applicationTile.TextBody3.Text = "Ryan  - 10 Moves";
+            //applicationTile.TextBody4.Text = "Ryan  - 09 Moves";
+
+            //applicationTile.RequireSquareContent = false;
+            ////applicationTile.Image.Src = "/Assets/WidePinTile.png";
+            //applicationTile.SquareContent = squareApplicationTile;
+
+            //var tileNotification = applicationTile.CreateNotification();
+            //tileUpdater.Update(tileNotification);
+        }
 
         //public async void UpdateSecondaryTiles()
         //{

@@ -139,6 +139,7 @@
     <Content Include="Assets\Audio\Buzzer.mp3" />
     <Content Include="Assets\Audio\TopLeftButton.mp3" />
     <Content Include="Assets\Audio\TopRightButton.mp3" />
+    <Content Include="Assets\LargeTile.png" />
     <Content Include="Assets\Logo.png" />
     <Content Include="Assets\RadialGradient.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -146,6 +147,7 @@
     <Content Include="Assets\SmallLogo.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Assets\SmallTile.png" />
     <Content Include="Assets\SplashScreen.png" />
     <Content Include="Assets\spunaluminum.png" />
     <Content Include="Assets\StoreLogo.png" />
@@ -189,6 +191,9 @@
     </Reference>
     <Reference Include="Microsoft.Practices.ServiceLocation">
       <HintPath>..\packages\MvvmLight.4.1.23.0\lib\winrt45\Microsoft.Practices.ServiceLocation.dll</HintPath>
+    </Reference>
+    <Reference Include="NotificationsExtensions">
+      <HintPath>..\packages\NotificationsExtensions\bin\Debug\NotificationsExtensions.winmd</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

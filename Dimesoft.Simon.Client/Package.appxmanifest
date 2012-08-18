@@ -15,9 +15,12 @@
   </Resources>
   <Applications>
     <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="Dimesoft.Simon.Client.App">
-      <VisualElements DisplayName="Simon Says" Logo="Assets\Logo.png" SmallLogo="Assets\SmallLogo.png" Description="Dimesoft.Simon.Client" ForegroundText="light" BackgroundColor="#464646">
-        <DefaultTile ShowName="allLogos" />
-        <SplashScreen Image="Assets\SplashScreen.png" />
+      <VisualElements DisplayName="Simon Says" Logo="Assets\SmallTile.png" SmallLogo="Assets\SmallLogo.png" Description="Dimesoft.Simon.Client" ForegroundText="dark" BackgroundColor="#FFFFFF">
+        <DefaultTile ShowName="allLogos" WideLogo="Assets\LargeTile.png" />
+        <SplashScreen Image="Assets\SplashScreen.png" BackgroundColor="#131313" />
+        <InitialRotationPreference>
+          <Rotation Preference="landscape" />
+        </InitialRotationPreference>
       </VisualElements>
     </Application>
   </Applications>
