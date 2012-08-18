@@ -134,7 +134,12 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\Audio\BottomLeftButton.mp3" />
+    <Content Include="Assets\Audio\BottomRightButton.mp3" />
+    <Content Include="Assets\Audio\TopLeftButton.mp3" />
+    <Content Include="Assets\Audio\TopRightButton.mp3" />
     <Content Include="Assets\Logo.png" />
+    <Content Include="Assets\RadialGradient.png" />
     <Content Include="Assets\SmallLogo.png" />
     <Content Include="Assets\SplashScreen.png" />
     <Content Include="Assets\StoreLogo.png" />
