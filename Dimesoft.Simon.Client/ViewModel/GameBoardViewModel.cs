@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Dimesoft.Simon.Domain.Engine;
+using Dimesoft.Simon.Domain.Managers;
 using Dimesoft.Simon.Domain.Model;
 using GalaSoft.MvvmLight.Command;
 
@@ -12,6 +13,8 @@ namespace Dimesoft.Simon.Client.ViewModel
     public class GameBoardViewModel : GalaSoft.MvvmLight.ViewModelBase
     {
         private GameBoard _gameBoardEngine;
+        private AudioManager _audioManager = new AudioManager();
+
         private RelayCommand _startNewGameCommand;
         private string _gameDuration;
         private RelayCommand _topLeftButtonPressedCommand;
@@ -21,6 +24,7 @@ namespace Dimesoft.Simon.Client.ViewModel
         private bool _topRightIsLit;
         private bool _bottomRightIsLit;
         private bool _bottomLeftIsLit;
+        private RelayCommand _bottomLeftButtonPressedCommand;
 
         public Player Player { get; set; }
 
@@ -37,9 +41,19 @@ namespace Dimesoft.Simon.Client.ViewModel
             get { return _bottomRightButtonPressedCommand ?? (_bottomRightButtonPressedCommand = new RelayCommand(BottomRightButtonPressed)); }
         }
 
-        private void BottomRightButtonPressed()
+        private async void BottomRightButtonPressed()
         {
+            await _audioManager.Play("BottomRightButton.mp3");
+        }
 
+        public RelayCommand BottomLeftButtonPressedCommand
+        {
+            get { return _bottomLeftButtonPressedCommand ?? (_bottomLeftButtonPressedCommand = new RelayCommand(BottomLeftButtonPressed)) ; }
+        }
+
+        private async void BottomLeftButtonPressed()
+        {
+            await _audioManager.Play("BottomLeftButton.mp3");
         }
 
         public RelayCommand TopLeftButtonPressedCommand
@@ -47,9 +61,9 @@ namespace Dimesoft.Simon.Client.ViewModel
             get { return _topLeftButtonPressedCommand ?? (_topLeftButtonPressedCommand = new RelayCommand(TopLeftButtonPressed)); }
         }
 
-        private void TopLeftButtonPressed()
+        private async void TopLeftButtonPressed()
         {
-
+            await _audioManager.Play("TopLeftButton.mp3");
         }
 
         public RelayCommand TopRightButtonPressedCommand
@@ -57,9 +71,9 @@ namespace Dimesoft.Simon.Client.ViewModel
             get { return _topRightButtonPressedCommand ?? (_topRightButtonPressedCommand = new RelayCommand(TopRightButtonPressed)); }
         }
 
-        private void TopRightButtonPressed()
+        private async void TopRightButtonPressed()
         {
-
+            await _audioManager.Play("TopRightButton.mp3");
         }
 
         public RelayCommand StartNewGameCommand

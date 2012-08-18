@@ -20,8 +20,8 @@ namespace Dimesoft.Simon.Domain.Managers
         public async Task Play(string fileName)
         {
             var packageLocation = Windows.ApplicationModel.Package.Current.InstalledLocation;
-            var assetsFolder = await packageLocation.GetFolderAsync("assets");
-            var soundsFolder = await assetsFolder.GetFolderAsync("sounds");
+            var assetsFolder = await packageLocation.GetFolderAsync("Assets");
+            var soundsFolder = await assetsFolder.GetFolderAsync("Audio");
             StorageFile myAudio = await soundsFolder.GetFileAsync(fileName);
 
             _mediaElement = new MediaElement();
