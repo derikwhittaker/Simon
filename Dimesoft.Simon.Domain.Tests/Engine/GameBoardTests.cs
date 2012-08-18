@@ -54,7 +54,7 @@ namespace Dimesoft.Simon.Domain.Tests.Engine
             var moveResult = gameBoard.HandleMove(player, moveList.Last());
 
 
-            Assert.AreEqual(MoveResult.Valid, moveResult);
+            Assert.AreEqual(AttemptResult.Valid, moveResult);
         }
 
 

@@ -24,19 +24,19 @@ namespace Dimesoft.Simon.Domain.Tests.LongRunning
             var moveList = gameBoard.GetMoveList(player);
 
             var moveResult = gameBoard.HandleMove(player, moveList.Last());
-            Assert.AreEqual(MoveResult.Valid, moveResult);
+            Assert.AreEqual(AttemptResult.Valid, moveResult);
 
             // setup for next move
             moveList = gameBoard.GetMoveList(player);
 
             moveResult = gameBoard.HandleMove(player, moveList.Last());
-            Assert.AreEqual(MoveResult.Valid, moveResult);
+            Assert.AreEqual(AttemptResult.Valid, moveResult);
 
             // setup for next move
             moveList = gameBoard.GetMoveList(player);
 
             moveResult = gameBoard.HandleMove(player, moveList.Last());
-            Assert.AreEqual(MoveResult.Valid, moveResult);
+            Assert.AreEqual(AttemptResult.Valid, moveResult);
 
         }
     }

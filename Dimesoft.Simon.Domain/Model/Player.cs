@@ -15,4 +15,11 @@ namespace Dimesoft.Simon.Domain.Model
 
         public bool DefaultPlaySoundOption { get; set; }
     }
+
+    public class MoveResult
+    {
+        public AttemptResult AttemptResult { get; set; }
+
+        public bool IsAtEndOfSequence { get; set; }
+    }
 }

@@ -37,9 +37,10 @@ namespace Dimesoft.Simon.Domain.Engine
 
             var moveManager = GetMoveManager(player);
 
-            var moveResult = moveManager.MakeMove(gameTile);
+            var attemptResult = moveManager.MakeMove(gameTile);
+            var isAtEndOfSequence = moveManager.IsAtEndOfSequence;
 
-            return moveResult;
+            return new MoveResult{AttemptResult = attemptResult, IsAtEndOfSequence = isAtEndOfSequence};
         }
 
         public IList<GameTile> GetMoveList(Player player)

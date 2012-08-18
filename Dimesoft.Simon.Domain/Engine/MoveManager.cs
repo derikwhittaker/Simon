@@ -6,9 +6,10 @@ namespace Dimesoft.Simon.Domain.Engine
 {
     public interface IMoveManager
     {
-        MoveResult MakeMove( GameTile move );
+        AttemptResult MakeMove( GameTile move );
         IList<GameTile> GetSequence();
         int LastMoveIndex { get; }
+        bool IsAtEndOfSequence { get; }
     }
 
     public class MoveManager : IMoveManager
@@ -27,7 +28,7 @@ namespace Dimesoft.Simon.Domain.Engine
             GameSequence.Add(move);
         }
 
-        public MoveResult MakeMove( GameTile move )
+        public AttemptResult MakeMove( GameTile move )
         {
             var gameSequence = GameSequence[LastMoveIndex];
             
@@ -35,10 +36,10 @@ namespace Dimesoft.Simon.Domain.Engine
             {
                 LastMoveIndex++;
 
-                return MoveResult.Valid;
+                return AttemptResult.Valid;
             }
 
-            return MoveResult.InValid;
+            return AttemptResult.InValid;
         }
 
         public IList<GameTile> GetSequence()
@@ -50,6 +51,11 @@ namespace Dimesoft.Simon.Domain.Engine
             Debug.WriteLine(nextMove.ToString());
 
             return GameSequence;
+        }
+
+        public bool IsAtEndOfSequence
+        {
+            get { return LastMoveIndex == GameSequence.Count; }
         }
 
         public IList<GameTile> GameSequence { get; private set; }

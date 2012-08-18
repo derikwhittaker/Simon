@@ -32,7 +32,7 @@ namespace Dimesoft.Simon.Domain.Model
         Completed = 4,
     }
 
-    public enum MoveResult
+    public enum AttemptResult
     {
         Unknown = 0 ,
         Valid = 1,

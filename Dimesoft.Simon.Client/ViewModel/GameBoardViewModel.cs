@@ -157,9 +157,14 @@ namespace Dimesoft.Simon.Client.ViewModel
         {
             var result = _gameBoardEngine.HandleMove(player, gameTilePressed);
 
-            if (result == MoveResult.Valid)
+            if (result.AttemptResult == AttemptResult.Valid)
             {
                 await _audioManager.Play(successAudioFileName);
+
+                if ( result.IsAtEndOfSequence )
+                {
+                    
+                }
                 _gameBoardEngine.GetMoveList(player);
             }
             else

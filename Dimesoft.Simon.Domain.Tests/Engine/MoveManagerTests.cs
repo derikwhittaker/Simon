@@ -59,7 +59,7 @@ namespace Dimesoft.Simon.Domain.Tests.Engine
             moveManager.AddMove(GameTile.BottomRight);
             moveManager.AddMove(GameTile.BottomLeft);
 
-            var expectedResult = MoveResult.Valid;
+            var expectedResult = AttemptResult.Valid;
             var result = moveManager.MakeMove(GameTile.BottomRight);
 
             Assert.AreEqual(expectedResult, result);
@@ -74,7 +74,7 @@ namespace Dimesoft.Simon.Domain.Tests.Engine
             moveManager.AddMove(GameTile.BottomRight);
             moveManager.AddMove(GameTile.BottomLeft);
 
-            var expectedResult = MoveResult.InValid;
+            var expectedResult = AttemptResult.InValid;
             var result = moveManager.MakeMove(GameTile.BottomLeft);
 
             Assert.AreEqual(expectedResult, result);
@@ -93,9 +93,9 @@ namespace Dimesoft.Simon.Domain.Tests.Engine
             var result2 = moveManager.MakeMove(GameTile.BottomRight);
             var result3 = moveManager.MakeMove(GameTile.BottomLeft);
 
-            Assert.AreEqual(MoveResult.Valid, result1);
-            Assert.AreEqual(MoveResult.Valid, result2);
-            Assert.AreEqual(MoveResult.Valid, result3);
+            Assert.AreEqual(AttemptResult.Valid, result1);
+            Assert.AreEqual(AttemptResult.Valid, result2);
+            Assert.AreEqual(AttemptResult.Valid, result3);
         }
 
         [TestMethod]
@@ -111,8 +111,8 @@ namespace Dimesoft.Simon.Domain.Tests.Engine
             var result2 = moveManager.MakeMove(GameTile.TopLeft);
             var result3 = moveManager.MakeMove(GameTile.BottomLeft);
 
-            Assert.AreEqual(MoveResult.Valid, result1);
-            Assert.AreEqual(MoveResult.InValid, result2);
+            Assert.AreEqual(AttemptResult.Valid, result1);
+            Assert.AreEqual(AttemptResult.InValid, result2);
         }
 
         [TestMethod]
