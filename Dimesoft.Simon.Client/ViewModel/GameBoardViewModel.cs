@@ -38,7 +38,12 @@ namespace Dimesoft.Simon.Client.ViewModel
 
         public RelayCommand BottomRightButtonPressedCommand
         {
-            get { return _bottomRightButtonPressedCommand ?? (_bottomRightButtonPressedCommand = new RelayCommand(BottomRightButtonPressed)); }
+            get { return _bottomRightButtonPressedCommand ?? (_bottomRightButtonPressedCommand = new RelayCommand(BottomRightButtonPressed, CanBottomRightButtonPressed)); }
+        }
+
+        private bool CanBottomRightButtonPressed()
+        {
+            return _gameBoardEngine.GamePlayStatus == GamePlayStatus.BeingPlayed;
         }
 
         private async void BottomRightButtonPressed()
@@ -49,7 +54,12 @@ namespace Dimesoft.Simon.Client.ViewModel
 
         public RelayCommand BottomLeftButtonPressedCommand
         {
-            get { return _bottomLeftButtonPressedCommand ?? (_bottomLeftButtonPressedCommand = new RelayCommand(BottomLeftButtonPressed)) ; }
+            get { return _bottomLeftButtonPressedCommand ?? (_bottomLeftButtonPressedCommand = new RelayCommand(BottomLeftButtonPressed, CanBottomLeftButtonPressed)); }
+        }
+
+        private bool CanBottomLeftButtonPressed()
+        {
+            return _gameBoardEngine.GamePlayStatus == GamePlayStatus.BeingPlayed;
         }
 
         private async void BottomLeftButtonPressed()
@@ -60,7 +70,12 @@ namespace Dimesoft.Simon.Client.ViewModel
 
         public RelayCommand TopLeftButtonPressedCommand
         {
-            get { return _topLeftButtonPressedCommand ?? (_topLeftButtonPressedCommand = new RelayCommand(TopLeftButtonPressed)); }
+            get { return _topLeftButtonPressedCommand ?? (_topLeftButtonPressedCommand = new RelayCommand(TopLeftButtonPressed, CanTopLeftButtonPressed)); }
+        }
+
+        private bool CanTopLeftButtonPressed()
+        {
+            return _gameBoardEngine.GamePlayStatus == GamePlayStatus.BeingPlayed;
         }
 
         private async void TopLeftButtonPressed()
@@ -72,7 +87,12 @@ namespace Dimesoft.Simon.Client.ViewModel
 
         public RelayCommand TopRightButtonPressedCommand
         {
-            get { return _topRightButtonPressedCommand ?? (_topRightButtonPressedCommand = new RelayCommand(TopRightButtonPressed)); }
+            get { return _topRightButtonPressedCommand ?? (_topRightButtonPressedCommand = new RelayCommand(TopRightButtonPressed, CanTopRightButtonPressed)); }
+        }
+
+        private bool CanTopRightButtonPressed()
+        {
+            return _gameBoardEngine.GamePlayStatus == GamePlayStatus.BeingPlayed;
         }
 
         private async void TopRightButtonPressed()

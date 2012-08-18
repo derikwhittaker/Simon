@@ -10,6 +10,7 @@ namespace Dimesoft.Simon.Domain.Engine
         private DispatcherTimer _gameClockTimer;
         private DifficultyLevel _currentDifficultyLevel = DifficultyLevel.Unknown;
         private IDictionary<Player, IMoveManager> _players = new Dictionary<Player, IMoveManager>();
+        private GamePlayStatus _gamePlayStatus = GamePlayStatus.Notstarted;
 
         public event EventHandler<int> GameClockChanged = (sender, i) => { };
 
@@ -66,6 +67,7 @@ namespace Dimesoft.Simon.Domain.Engine
             CurrentDifficultyLevel = difficultyLevel;
 
             _gameClockTimer.Start();
+            GamePlayStatus = GamePlayStatus.BeingPlayed;
         }
 
         public IDictionary<Player, IMoveManager> Players
@@ -78,6 +80,12 @@ namespace Dimesoft.Simon.Domain.Engine
         {
             get { return _currentDifficultyLevel; }
             private set { _currentDifficultyLevel = value; }
+        }
+
+        public GamePlayStatus GamePlayStatus
+        {
+            get { return _gamePlayStatus; }
+            private set { _gamePlayStatus = value; }
         }
 
         private IMoveManager GetMoveManager(Player player)

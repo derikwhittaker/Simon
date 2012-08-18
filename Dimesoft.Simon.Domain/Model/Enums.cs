@@ -23,6 +23,15 @@ namespace Dimesoft.Simon.Domain.Model
         BottomRight = 4
     }
 
+    public enum GamePlayStatus
+    {
+        Unknown = 0,
+        Notstarted = 1,
+        BeingPlayed = 2,
+        Paused = 3,
+        Completed = 4,
+    }
+
     public enum MoveResult
     {
         Unknown = 0 ,
