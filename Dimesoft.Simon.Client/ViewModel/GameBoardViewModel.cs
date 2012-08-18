@@ -44,6 +44,7 @@ namespace Dimesoft.Simon.Client.ViewModel
         private async void BottomRightButtonPressed()
         {
             await _audioManager.Play("BottomRightButton.mp3");
+            BottomRightIsLit = true;
         }
 
         public RelayCommand BottomLeftButtonPressedCommand
@@ -54,6 +55,7 @@ namespace Dimesoft.Simon.Client.ViewModel
         private async void BottomLeftButtonPressed()
         {
             await _audioManager.Play("BottomLeftButton.mp3");
+            BottomLeftIsLit = true;
         }
 
         public RelayCommand TopLeftButtonPressedCommand
@@ -64,6 +66,7 @@ namespace Dimesoft.Simon.Client.ViewModel
         private async void TopLeftButtonPressed()
         {
             await _audioManager.Play("TopLeftButton.mp3");
+            TopLeftIsLit = true;
         }
 
         public RelayCommand TopRightButtonPressedCommand
@@ -74,6 +77,7 @@ namespace Dimesoft.Simon.Client.ViewModel
         private async void TopRightButtonPressed()
         {
             await _audioManager.Play("TopRightButton.mp3");
+            TopRightIsLit = true;
         }
 
         public RelayCommand StartNewGameCommand
