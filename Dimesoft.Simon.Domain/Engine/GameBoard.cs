@@ -52,6 +52,13 @@ namespace Dimesoft.Simon.Domain.Engine
             return moveManager.GetSequence();
         }
 
+
+        public void ResetSequenceCounter(Player player)
+        {
+            var moveManager = GetMoveManager(player);
+            moveManager.ResetSequenceCounter();
+        }
+
         public void SetupBoard(IList<Player> players, DifficultyLevel difficultyLevel)
         {
             if (players == null) { throw new ArgumentNullException("Players was null"); }
@@ -99,5 +106,6 @@ namespace Dimesoft.Simon.Domain.Engine
         }
 
         private int RunningClockInSeconds { get; set; }
+
     }
 }

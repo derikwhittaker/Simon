@@ -10,6 +10,7 @@ namespace Dimesoft.Simon.Domain.Engine
         IList<GameTile> GetSequence();
         int LastMoveIndex { get; }
         bool IsAtEndOfSequence { get; }
+        void ResetSequenceCounter();
     }
 
     public class MoveManager : IMoveManager
@@ -56,6 +57,11 @@ namespace Dimesoft.Simon.Domain.Engine
         public bool IsAtEndOfSequence
         {
             get { return LastMoveIndex == GameSequence.Count; }
+        }
+
+        public void ResetSequenceCounter()
+        {
+            LastMoveIndex = 0;
         }
 
         public IList<GameTile> GameSequence { get; private set; }

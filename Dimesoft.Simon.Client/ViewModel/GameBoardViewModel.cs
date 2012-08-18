@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using System.Diagnostics;
 using System.Threading.Tasks;
-using Dimesoft.Simon.Domain.Engine;
+using Dimesoft.Simon.Client.View;
 using Dimesoft.Simon.Domain.Managers;
 using Dimesoft.Simon.Domain.Model;
 using GalaSoft.MvvmLight.Command;
+using Windows.UI.Xaml.Controls.Primitives;
+using GameBoard = Dimesoft.Simon.Domain.Engine.GameBoard;
 
 namespace Dimesoft.Simon.Client.ViewModel
 {
@@ -14,6 +15,7 @@ namespace Dimesoft.Simon.Client.ViewModel
     {
         private GameBoard _gameBoardEngine;
         private AudioManager _audioManager = new AudioManager();
+        private Popup _userMessagePopup;
 
         private RelayCommand _startNewGameCommand;
         private string _gameDuration;
@@ -108,19 +110,20 @@ namespace Dimesoft.Simon.Client.ViewModel
 
             _gameBoardEngine.SetupBoard(new List<Player> { Player }, DifficultyLevel.Easy);
 
-            var moveList = _gameBoardEngine.GetMoveList(Player);
-
-            await ShowPlayerMoves(moveList);
+            await ShowPlayerSequence();
 
             //
             TopLeftButtonPressedCommand.RaiseCanExecuteChanged();
             TopRightButtonPressedCommand.RaiseCanExecuteChanged();
             BottomLeftButtonPressedCommand.RaiseCanExecuteChanged();
             BottomRightButtonPressedCommand.RaiseCanExecuteChanged();
+
         }
 
-        private async Task ShowPlayerMoves(IList<GameTile> moveList)
+        private async Task ShowPlayerSequence()
         {
+            var moveList = _gameBoardEngine.GetMoveList(Player);
+
             foreach (var move in moveList)
             {
                 BottomLeftIsLit = false;
@@ -146,7 +149,8 @@ namespace Dimesoft.Simon.Client.ViewModel
                         TopLeftIsLit = true;
                         break;
                 }
-                
+
+                Debug.WriteLine("Ticks {0}", DateTime.Now.Ticks);
                 Task.Delay(200);
             }
         }
@@ -163,13 +167,14 @@ namespace Dimesoft.Simon.Client.ViewModel
 
                 if ( result.IsAtEndOfSequence )
                 {
-                    
+                    _gameBoardEngine.ResetSequenceCounter(Player);
+                    ShowPlayerSequence();
                 }
-                _gameBoardEngine.GetMoveList(player);
             }
             else
             {
                 await _audioManager.Play("Buzzer.mp3");
+                
             }
         }
 
