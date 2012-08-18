@@ -47,7 +47,7 @@
                             Margin="0,0,0,60"
                             />
 
-            <TextBlock Text="DimeSoft" FontFamily="Impact"
+            <TextBlock Text="dimesoft" FontFamily="Impact"
                                FontSize="56" Foreground="Black"
                                HorizontalAlignment="Center" VerticalAlignment="Top"
                                Margin="0,40,0,0"
