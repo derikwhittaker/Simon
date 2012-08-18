@@ -110,7 +110,8 @@ namespace Dimesoft.Simon.Client.ViewModel
 
             _gameBoardEngine.SetupBoard(new List<Player> { Player }, DifficultyLevel.Easy);
 
-            await ShowPlayerSequence();
+            //await ShowPlayerSequence();
+            TopLeftIsLit = true;
 
             //
             TopLeftButtonPressedCommand.RaiseCanExecuteChanged();
@@ -174,7 +175,6 @@ namespace Dimesoft.Simon.Client.ViewModel
             else
             {
                 await _audioManager.Play("Buzzer.mp3");
-                
             }
         }
 
