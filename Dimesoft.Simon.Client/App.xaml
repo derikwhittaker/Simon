@@ -9,7 +9,9 @@
                     Required by Visual Studio project and item templates
                  -->
         <ResourceDictionary Source="Common/StandardStyles.xaml" />
-      </ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Common/StandardStyles.xaml" />
+                <ResourceDictionary Source="Styles/Controls.xaml" />
+            </ResourceDictionary.MergedDictionaries>
       <!-- Application-specific resources -->
       <x:String x:Key="AppName">Dimesoft.Simon.Client</x:String>
       <ViewModel:ViewModelLocator x:Key="Locator" d:IsDataSource="True" />

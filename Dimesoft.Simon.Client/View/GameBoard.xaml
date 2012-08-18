@@ -1,0 +1,32 @@
+﻿<Page
+    x:Class="Dimesoft.Simon.Client.View.GameBoard"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Dimesoft.Simon.Client.View"
+    xmlns:Controls="using:Dimesoft.Simon.Client.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
+        <Controls:LightButton x:Name="TopLeftButton" ButtonColor="Green" 
+                     Margin="35,35,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"
+                              IsLit="True"
+                                  />
+        <Controls:LightButton x:Name="TopRightButton" ButtonColor="Red" 
+                     Margin="0,35,35,0" HorizontalAlignment="Right" VerticalAlignment="Top"
+                                  />
+        <Controls:LightButton x:Name="BottomRightButton" ButtonColor="Blue" 
+                     Margin="0,0,35,35" HorizontalAlignment="Right" VerticalAlignment="Bottom"
+                                  />
+
+        <Controls:LightButton x:Name="BottomLeftButton" ButtonColor="Yellow" 
+                     Margin="35,0,0,35" HorizontalAlignment="Left" VerticalAlignment="Bottom"
+                                  />
+
+        <Grid x:Name="StatusScreen" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Rectangle Fill="White" Height="100" Width="100" />
+        </Grid>
+
+        </Grid>
+</Page>

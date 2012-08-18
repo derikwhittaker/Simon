@@ -1,5 +1,5 @@
 ﻿using Dimesoft.Simon.Client.Common;
-
+using Dimesoft.Simon.Client.View;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -67,7 +67,7 @@ namespace Dimesoft.Simon.Client
                 // When the navigation stack isn't restored navigate to the first page,
                 // configuring the new page by passing required information as a navigation
                 // parameter
-                if (!rootFrame.Navigate(typeof(ItemsPage), "AllGroups"))
+                if (!rootFrame.Navigate(typeof(GameBoard), "AllGroups"))
                 {
                     throw new Exception("Failed to create initial page");
                 }
