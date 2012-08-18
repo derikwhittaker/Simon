@@ -29,8 +29,8 @@ namespace Dimesoft.Simon.Client.Controls
                 DoubleAnimation da = new DoubleAnimation();
                 da.To = 0.75;
                 da.From = 0;
-                da.Duration = new Duration(new TimeSpan(0,0,0,12));
-                
+                da.Duration = new Duration(new TimeSpan(0,0,0,0,200));
+                da.AutoReverse = true;
 
                 Storyboard.SetTarget(da,_glow);
                 Storyboard.SetTargetProperty(da,"Opacity");
