@@ -1,20 +1,35 @@
 ﻿using System;
 using System.Collections.Generic;
 using Dimesoft.Simon.Domain.Model;
+using Windows.UI.Xaml;
 
 namespace Dimesoft.Simon.Domain.Engine
 {
     public class GameBoard
     {
+        private DispatcherTimer _gameClockTimer;
         private DifficultyLevel _currentDifficultyLevel = DifficultyLevel.Unknown;
         private IDictionary<Player, IMoveManager> _players = new Dictionary<Player, IMoveManager>();
-        
+
+        public event EventHandler<int> GameClockChanged = (sender, i) => { };
+
         public void Initialize()
         {
             Players = new Dictionary<Player, IMoveManager>();
+            RunningClockInSeconds = 0;
+
+            _gameClockTimer = new DispatcherTimer();
+            _gameClockTimer.Interval = new TimeSpan(0, 0, 0, 1);
+            _gameClockTimer.Tick += GameClockTicked;
         }
 
-        public MoveResult HandleMove(Player player, GameTile gameTile )
+        private void GameClockTicked(object sender, object e)
+        {
+            RunningClockInSeconds++;
+            GameClockChanged(this, RunningClockInSeconds);
+        }
+
+        public MoveResult HandleMove(Player player, GameTile gameTile)
         {
             if (player == null) { throw new ArgumentNullException("Players was null"); }
             if (gameTile == GameTile.Unknown) { throw new ArgumentOutOfRangeException("GameTile was out of range"); }
@@ -22,7 +37,7 @@ namespace Dimesoft.Simon.Domain.Engine
             var moveManager = GetMoveManager(player);
 
             var moveResult = moveManager.MakeMove(gameTile);
-            
+
             return moveResult;
         }
 
@@ -35,7 +50,7 @@ namespace Dimesoft.Simon.Domain.Engine
             return moveManager.GetSequence();
         }
 
-        public void SetupBoard(IList<Player> players, DifficultyLevel difficultyLevel )
+        public void SetupBoard(IList<Player> players, DifficultyLevel difficultyLevel)
         {
             if (players == null) { throw new ArgumentNullException("Players was null"); }
             if (players.Count == 0) { throw new ArgumentOutOfRangeException("Players was out of range"); }
@@ -45,10 +60,12 @@ namespace Dimesoft.Simon.Domain.Engine
 
             foreach (var player in players)
             {
-                Players.Add(player, new MoveManager( new MoveGenerator() ));
+                Players.Add(player, new MoveManager(new MoveGenerator()));
             }
 
             CurrentDifficultyLevel = difficultyLevel;
+
+            _gameClockTimer.Start();
         }
 
         public IDictionary<Player, IMoveManager> Players
@@ -56,7 +73,7 @@ namespace Dimesoft.Simon.Domain.Engine
             get { return _players; }
             private set { _players = value; }
         }
-        
+
         public DifficultyLevel CurrentDifficultyLevel
         {
             get { return _currentDifficultyLevel; }
@@ -71,5 +88,7 @@ namespace Dimesoft.Simon.Domain.Engine
 
             return Players[player];
         }
+
+        private int RunningClockInSeconds { get; set; }
     }
 }

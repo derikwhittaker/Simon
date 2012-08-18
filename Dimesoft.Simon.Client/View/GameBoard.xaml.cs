@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using Dimesoft.Simon.Client.ViewModel;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI;
@@ -25,6 +26,8 @@ namespace Dimesoft.Simon.Client.View
         public GameBoard()
         {
             this.InitializeComponent();
+
+            DataContext = new GameBoardViewModel();
 
             TopLeftButton.ButtonColor = Colors.Red;
             TopRightButton.ButtonColor = Colors.Red;

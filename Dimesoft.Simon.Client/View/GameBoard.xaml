@@ -9,17 +9,18 @@
     mc:Ignorable="d">
 
     <Grid Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
-        <Controls:LightButton x:Name="TopLeftButton"
+        <Controls:LightButton x:Name="TopLeftButton" 
+                    Command="{Binding TopLeftButtonPressedCommand}" IsLit="{Binding TopLeftIsLit}"
                      Margin="35,35,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"
                                   />
-        <Controls:LightButton x:Name="TopRightButton"
+        <Controls:LightButton x:Name="TopRightButton" Command="{Binding TopRightButtonPressedCommand}" IsLit="{Binding TopRightIsLit}"
                      Margin="0,35,35,0" HorizontalAlignment="Right" VerticalAlignment="Top"
                                   >
             <Controls:LightButton.RenderTransform>
                 <CompositeTransform ScaleX="-1" TranslateX="614" />
             </Controls:LightButton.RenderTransform>
         </Controls:LightButton>
-        <Controls:LightButton x:Name="BottomRightButton"
+        <Controls:LightButton x:Name="BottomRightButton" Command="{Binding BottomRightButtonPressedCommand}" IsLit="{Binding BottomRightIsLit}"
                      Margin="0,0,35,35" HorizontalAlignment="Right" VerticalAlignment="Bottom"
                                   >
             <Controls:LightButton.RenderTransform>
@@ -27,7 +28,7 @@
             </Controls:LightButton.RenderTransform>
         </Controls:LightButton>
 
-        <Controls:LightButton x:Name="BottomLeftButton"
+        <Controls:LightButton x:Name="BottomLeftButton"  Command="{Binding BottomLeftButtonPressedCommand}" IsLit="{Binding BottomLeftIsLit}"
                      Margin="35,0,0,35" HorizontalAlignment="Left" VerticalAlignment="Bottom"
                                   >
             <Controls:LightButton.RenderTransform>
@@ -36,7 +37,12 @@
         </Controls:LightButton>
 
         <Grid x:Name="StatusScreen" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <Rectangle Fill="White" Height="100" Width="100" />
+            <Border  Background="Purple" Height="250" Width="250">
+                <StackPanel Orientation="Vertical">
+                    <Button Content="Start" Command="{Binding StartNewGameCommand}" Height="35" Width="100" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    <TextBlock Text="{Binding GameDuration}" />
+                </StackPanel>
+            </Border>
         </Grid>
 
         </Grid>

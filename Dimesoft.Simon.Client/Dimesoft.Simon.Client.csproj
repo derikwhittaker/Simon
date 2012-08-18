@@ -185,6 +185,12 @@
       <HintPath>..\packages\MvvmLight.4.1.23.0\lib\winrt45\Microsoft.Practices.ServiceLocation.dll</HintPath>
     </Reference>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Dimesoft.Simon.Domain\Dimesoft.Simon.Domain.csproj">
+      <Project>{24F7D74C-54E1-4907-8C33-FD75150E813F}</Project>
+      <Name>Dimesoft.Simon.Domain</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '11.0' ">
     <VisualStudioVersion>11.0</VisualStudioVersion>
   </PropertyGroup>
