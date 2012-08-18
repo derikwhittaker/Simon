@@ -47,13 +47,13 @@
                             Margin="0,0,0,60"
                             />
 
-            <TextBlock Text="DimeSoft" FontFamily="Calibri"
-                               FontSize="48" Foreground="Black"
+            <TextBlock Text="DimeSoft" FontFamily="Impact"
+                               FontSize="56" Foreground="Black"
                                HorizontalAlignment="Center" VerticalAlignment="Top"
                                Margin="0,40,0,0"
                                />
             <TextBlock
-                        FontFamily="Calibri" FontSize="18"
+                        FontFamily="Impact" FontSize="18"
                         VerticalAlignment="Center" HorizontalAlignment="Left"
                           Foreground="Black"
                          Margin="10,0,0,0"
@@ -63,7 +63,7 @@
                     </TextBlock>
 
                     <TextBlock
-                        FontFamily="Calibri" FontSize="18"
+                        FontFamily="Impact" FontSize="18"
                         VerticalAlignment="Center" HorizontalAlignment="Right" 
                          Foreground="Black" 
                         Margin="0,0,10,0"
