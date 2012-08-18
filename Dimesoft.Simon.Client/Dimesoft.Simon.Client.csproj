@@ -136,6 +136,7 @@
   <ItemGroup>
     <Content Include="Assets\Audio\BottomLeftButton.mp3" />
     <Content Include="Assets\Audio\BottomRightButton.mp3" />
+    <Content Include="Assets\Audio\Buzzer.mp3" />
     <Content Include="Assets\Audio\TopLeftButton.mp3" />
     <Content Include="Assets\Audio\TopRightButton.mp3" />
     <Content Include="Assets\Logo.png" />

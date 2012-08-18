@@ -12,6 +12,7 @@ namespace Dimesoft.Simon.Domain.Engine
 
     public class MoveGenerator : IMoveGenerator
     {
+        private Random _random = new Random(3);
         public const int MaxMovesToGenerate = 400;
         private IList<GameTile> _possibleMoves;
         
@@ -22,25 +23,25 @@ namespace Dimesoft.Simon.Domain.Engine
 
         private void SetupGenerator()
         {
-            var random = new Random(3);
+            
             var seedList = new GameTile[4] { GameTile.BottomLeft, GameTile.TopRight, GameTile.BottomRight, GameTile.TopLeft };
             PossibleMoves = new List<GameTile>();
 
             for (var i = 0; i < MaxMovesToGenerate; i++)
             {
-                var index = random.Next(4);
+                var index = _random.Next(4);
                 var tileType = seedList[index];
 
                 PossibleMoves.Add(tileType);
-                Debug.WriteLine(tileType);
             }
         }
 
         public GameTile Generate()
         {
-            var random = new Random(100);
-            var index = random.Next(0, PossibleMoves.Count);
+            var index = _random.Next(PossibleMoves.Count);
             var gameTile = PossibleMoves[index];
+
+            Debug.WriteLine("Index {0} Tile {1}", index, gameTile);
 
             return gameTile;
         }

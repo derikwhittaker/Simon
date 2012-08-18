@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Diagnostics;
 using Dimesoft.Simon.Domain.Model;
 
 namespace Dimesoft.Simon.Domain.Engine
@@ -45,6 +46,8 @@ namespace Dimesoft.Simon.Domain.Engine
             var nextMove = _moveGenerator.Generate();
 
             AddMove(nextMove);
+
+            Debug.WriteLine(nextMove.ToString());
 
             return GameSequence;
         }

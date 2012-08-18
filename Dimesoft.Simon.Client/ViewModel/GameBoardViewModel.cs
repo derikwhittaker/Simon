@@ -48,10 +48,9 @@ namespace Dimesoft.Simon.Client.ViewModel
 
         private async void BottomRightButtonPressed()
         {
-            var result = _gameBoardEngine.HandleMove(Player, GameTile.BottomRight);
-            await _audioManager.Play("BottomRightButton.mp3");
+            await HandleButtonPressedAsync(Player, GameTile.BottomRight, "BottomRightButton.mp3");
         }
-
+        
         public RelayCommand BottomLeftButtonPressedCommand
         {
             get { return _bottomLeftButtonPressedCommand ?? (_bottomLeftButtonPressedCommand = new RelayCommand(BottomLeftButtonPressed, CanBottomLeftButtonPressed)); }
@@ -64,8 +63,7 @@ namespace Dimesoft.Simon.Client.ViewModel
 
         private async void BottomLeftButtonPressed()
         {
-            var result = _gameBoardEngine.HandleMove(Player, GameTile.BottomLeft);
-            await _audioManager.Play("BottomLeftButton.mp3");
+            await HandleButtonPressedAsync(Player, GameTile.BottomLeft, "BottomLeftButton.mp3");
         }
 
         public RelayCommand TopLeftButtonPressedCommand
@@ -80,9 +78,7 @@ namespace Dimesoft.Simon.Client.ViewModel
 
         private async void TopLeftButtonPressed()
         {
-            var result = _gameBoardEngine.HandleMove(Player, GameTile.TopLeft);
-            await _audioManager.Play("TopLeftButton.mp3");
-            
+            await HandleButtonPressedAsync(Player, GameTile.TopLeft, "TopLeftButton.mp3");
         }
 
         public RelayCommand TopRightButtonPressedCommand
@@ -97,9 +93,7 @@ namespace Dimesoft.Simon.Client.ViewModel
 
         private async void TopRightButtonPressed()
         {
-            var result = _gameBoardEngine.HandleMove(Player, GameTile.TopRight);
-            await _audioManager.Play("TopRightButton.mp3");
-            
+            await HandleButtonPressedAsync(Player, GameTile.TopRight, "TopRightButton.mp3");
         }
 
         public RelayCommand StartNewGameCommand
@@ -107,7 +101,7 @@ namespace Dimesoft.Simon.Client.ViewModel
             get { return _startNewGameCommand ?? (_startNewGameCommand = new RelayCommand(StartNewGame)); }
         }
 
-        private void StartNewGame()
+        private async void StartNewGame()
         {
             // hard coded to one player
             Player = new Player { Id = 1, Name = "Captain Simon" };
@@ -115,9 +109,64 @@ namespace Dimesoft.Simon.Client.ViewModel
             _gameBoardEngine.SetupBoard(new List<Player> { Player }, DifficultyLevel.Easy);
 
             var moveList = _gameBoardEngine.GetMoveList(Player);
+
+            await ShowPlayerMoves(moveList);
+
+            //
+            TopLeftButtonPressedCommand.RaiseCanExecuteChanged();
+            TopRightButtonPressedCommand.RaiseCanExecuteChanged();
+            BottomLeftButtonPressedCommand.RaiseCanExecuteChanged();
+            BottomRightButtonPressedCommand.RaiseCanExecuteChanged();
+        }
+
+        private async Task ShowPlayerMoves(IList<GameTile> moveList)
+        {
+            foreach (var move in moveList)
+            {
+                BottomLeftIsLit = false;
+                BottomRightIsLit = false;
+                TopLeftIsLit = false;
+                TopRightIsLit = false;
+
+                switch (move)
+                {
+                    case GameTile.BottomRight:
+                        BottomRightIsLit = true;
+                        break;
+
+                    case GameTile.BottomLeft:
+                        BottomLeftIsLit = true;
+                        break;
+
+                    case GameTile.TopRight:
+                        TopRightIsLit = true;
+                        break;
+
+                    case GameTile.TopLeft:
+                        TopLeftIsLit = true;
+                        break;
+                }
+                
+                Task.Delay(200);
+            }
         }
 
         #endregion
+
+        private async Task HandleButtonPressedAsync(Player player, GameTile gameTilePressed, string successAudioFileName)
+        {
+            var result = _gameBoardEngine.HandleMove(player, gameTilePressed);
+
+            if (result == MoveResult.Valid)
+            {
+                await _audioManager.Play(successAudioFileName);
+                _gameBoardEngine.GetMoveList(player);
+            }
+            else
+            {
+                await _audioManager.Play("Buzzer.mp3");
+            }
+        }
 
         public string GameDuration
         {
