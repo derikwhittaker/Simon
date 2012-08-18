@@ -37,42 +37,42 @@
         </Controls:LightButton>
 
         <Grid x:Name="StatusScreen" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <Ellipse Fill="Purple" Height="385" Width="480" />
-                <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="auto" />
-                        <RowDefinition Height="auto" />
-                    </Grid.RowDefinitions>
+            <Ellipse   Height="385" Width="480" >
+                <Ellipse.Fill>
+                    <ImageBrush ImageSource="ms-appx:///Assets/SpunAluminum.png" Stretch="Uniform" />
+                </Ellipse.Fill>
+            </Ellipse>
                     
-                    <Button Grid.Row="0" Content="Start" Command="{Binding StartNewGameCommand}" Height="35" Width="100" HorizontalAlignment="Center" VerticalAlignment="Center" />
-                    
-                    <Grid Grid.Row="1" Margin="10,25,10,0" Background="Red">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="1*" />
-<ColumnDefinition Width="1*" />
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="auto" />
-                            <RowDefinition Height="auto" />
-                        </Grid.RowDefinitions>                        
-                        <TextBlock Grid.Row="0" Grid.Column="0" Text="Game Time:"
-                                   FontFamily="Calibri" FontSize="18"
-                                   VerticalAlignment="Center" HorizontalAlignment="Center" />
-                        
-                        <TextBlock Grid.Row="1" Grid.Column="0" Text="{Binding GameDuration}"   
-                                   FontFamily="Calibri" FontSize="18"
-                                   VerticalAlignment="Center" HorizontalAlignment="Left" />
-                        
-                        <TextBlock Grid.Row="0" Grid.Column="1" Text="Moves:"
-                                   FontFamily="Calibri" FontSize="18"
-                                   VerticalAlignment="Center" HorizontalAlignment="Center" />
+                    <Button Grid.Row="0" Content="Start" Command="{Binding StartNewGameCommand}" Height="35" Width="100" HorizontalAlignment="Center" VerticalAlignment="Bottom" 
+                            Margin="0,0,0,60"
+                            />
 
-                        <TextBlock Grid.Row="1" Grid.Column="0" Text="{Binding GameDuration}"   
-                                   FontFamily="Calibri" FontSize="18"
-                                   VerticalAlignment="Center" HorizontalAlignment="Left" />                        
-                        
-                    </Grid>
-                </Grid>
+            <TextBlock Text="DimeSoft" FontFamily="Calibri"
+                               FontSize="48" Foreground="Black"
+                               HorizontalAlignment="Center" VerticalAlignment="Top"
+                               Margin="0,40,0,0"
+                               />
+            <TextBlock
+                        FontFamily="Calibri" FontSize="18"
+                        VerticalAlignment="Center" HorizontalAlignment="Left"
+                          Foreground="Black"
+                         Margin="10,0,0,0"
+                        >
+                        <Run Text="Game Time: "/>
+                        <Run Text="{Binding GameDuration}" />
+                    </TextBlock>
+
+                    <TextBlock
+                        FontFamily="Calibri" FontSize="18"
+                        VerticalAlignment="Center" HorizontalAlignment="Right" 
+                         Foreground="Black" 
+                        Margin="0,0,10,0"
+                        >
+                        <Run Text="Game Level: "/>
+                        <Run Text="{Binding GameLevel}" />
+                    </TextBlock>
+
+        
                                            
             </Grid>
 
