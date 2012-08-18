@@ -173,13 +173,14 @@ namespace Dimesoft.Simon.Client.ViewModel
             }
         }
 
+
         public string GameDuration
         {
             get { return _gameDuration; }
             set
             {
                 _gameDuration = value;
-                RaisePropertyChanged(() => GameDuration);
+                 RaisePropertyChanged(() => GameDuration);
             }
         }
 

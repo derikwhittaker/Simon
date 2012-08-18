@@ -37,13 +37,20 @@
         </Controls:LightButton>
 
         <Grid x:Name="StatusScreen" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <Border  Background="Purple" Height="250" Width="250">
-                <StackPanel Orientation="Vertical">
+            <Ellipse   Fill="Purple" Height="385" Width="480" />
                     <Button Content="Start" Command="{Binding StartNewGameCommand}" Height="35" Width="100" HorizontalAlignment="Center" VerticalAlignment="Center" />
-                    <TextBlock Text="{Binding GameDuration}" />
-                </StackPanel>
-            </Border>
-        </Grid>
+
+                <TextBlock Text="{Binding GameDuration}"   
+                               FontFamily="Calibri" FontSize="18"
+                               VerticalAlignment="Center" HorizontalAlignment="Left" Margin="40,0,0,0" 
+                               >
+                    <Run Text="Game: " />
+                    <Run Text="{Binding GameDuration}"  />
+                </TextBlock>
+
+                               
+            
+            </Grid>
 
         </Grid>
 </Page>
