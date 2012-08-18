@@ -8,6 +8,12 @@ namespace Dimesoft.Simon.Domain.Model
         Hard = 3
     }
 
+    public enum GameMode
+    {
+        Unknown = 0,
+        Normal = 1
+    }
+
     public enum GameTile
     {
         Unknown = 0,

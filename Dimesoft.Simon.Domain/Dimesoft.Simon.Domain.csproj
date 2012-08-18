@@ -105,6 +105,8 @@
     <Compile Include="Engine\GameBoard.cs" />
     <Compile Include="Engine\MoveGenerator.cs" />
     <Compile Include="Engine\MoveManager.cs" />
+    <Compile Include="Managers\AudioManager.cs" />
+    <Compile Include="Managers\PinManager.cs" />
     <Compile Include="Model\Enums.cs" />
     <Compile Include="Model\Player.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
