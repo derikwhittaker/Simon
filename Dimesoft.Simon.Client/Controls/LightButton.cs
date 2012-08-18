@@ -1,17 +1,61 @@
-﻿using Windows.UI;
+﻿using System;
+using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Media.Animation;
+using Windows.UI.Xaml.Shapes;
 
 namespace Dimesoft.Simon.Client.Controls
 {
     class LightButton: Button
     {
+        private Path _glow = null;
 
         public LightButton()
         {
             DefaultStyleKey = typeof(LightButton);
             this.ButtonColor = Colors.White;
         }
+
+        protected override void OnTapped(Windows.UI.Xaml.Input.TappedRoutedEventArgs e)
+        {
+            base.OnTapped(e);
+
+            if (_glow != null)
+            {
+                Storyboard b = new Storyboard();
+
+               
+                DoubleAnimation da = new DoubleAnimation();
+                da.To = 0.75;
+                da.From = 0;
+                da.Duration = new Duration(new TimeSpan(0,0,0,12));
+                
+
+                Storyboard.SetTarget(da,_glow);
+                Storyboard.SetTargetProperty(da,"Opacity");
+
+                b.Children.Add(da);
+
+                b.Begin();
+            }
+        }
+
+        protected override void OnApplyTemplate()
+        {
+            base.OnApplyTemplate();
+
+            if (_glow == null)
+            {
+                object g = this.GetTemplateChild("Lightbulb");
+                if (g is Path)
+                {
+                    _glow = (Path)g;
+                }
+
+            }
+        }
+
 
         public Color ButtonColor
         {
