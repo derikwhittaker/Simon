@@ -15,8 +15,7 @@ namespace Dimesoft.Simon.Client.ViewModel
     {
         private GameBoard _gameBoardEngine;
         private AudioManager _audioManager = new AudioManager();
-        private Popup _userMessagePopup;
-
+        
         private RelayCommand _startNewGameCommand;
         private string _gameDuration;
         private RelayCommand _topLeftButtonPressedCommand;
@@ -27,6 +26,7 @@ namespace Dimesoft.Simon.Client.ViewModel
         private bool _bottomRightIsLit;
         private bool _bottomLeftIsLit;
         private RelayCommand _bottomLeftButtonPressedCommand;
+        private int _gameLevel;
 
         public Player Player { get; set; }
 
@@ -100,7 +100,12 @@ namespace Dimesoft.Simon.Client.ViewModel
 
         public RelayCommand StartNewGameCommand
         {
-            get { return _startNewGameCommand ?? (_startNewGameCommand = new RelayCommand(StartNewGame)); }
+            get { return _startNewGameCommand ?? (_startNewGameCommand = new RelayCommand(StartNewGame, CanStartNewGame)); }
+        }
+
+        private bool CanStartNewGame()
+        {
+            return _gameBoardEngine.GamePlayStatus != GamePlayStatus.BeingPlayed;
         }
 
         private async void StartNewGame()
@@ -110,14 +115,14 @@ namespace Dimesoft.Simon.Client.ViewModel
 
             _gameBoardEngine.SetupBoard(new List<Player> { Player }, DifficultyLevel.Easy);
 
-            //await ShowPlayerSequence();
-            TopLeftIsLit = true;
-
+            await ShowPlayerSequence();
+            
             //
             TopLeftButtonPressedCommand.RaiseCanExecuteChanged();
             TopRightButtonPressedCommand.RaiseCanExecuteChanged();
             BottomLeftButtonPressedCommand.RaiseCanExecuteChanged();
             BottomRightButtonPressedCommand.RaiseCanExecuteChanged();
+            StartNewGameCommand.RaiseCanExecuteChanged();
 
         }
 
@@ -165,6 +170,7 @@ namespace Dimesoft.Simon.Client.ViewModel
             if (result.AttemptResult == AttemptResult.Valid)
             {
                 await _audioManager.Play(successAudioFileName);
+                GameLevel = result.CurrentLevel;
 
                 if ( result.IsAtEndOfSequence )
                 {
@@ -175,7 +181,15 @@ namespace Dimesoft.Simon.Client.ViewModel
             else
             {
                 await _audioManager.Play("Buzzer.mp3");
+                StopGame();
+
+                StartNewGameCommand.RaiseCanExecuteChanged();
             }
+        }
+
+        private void StopGame()
+        {
+            _gameBoardEngine.StopGame();
         }
 
 
@@ -186,6 +200,16 @@ namespace Dimesoft.Simon.Client.ViewModel
             {
                 _gameDuration = value;
                  RaisePropertyChanged(() => GameDuration);
+            }
+        }
+
+        public int GameLevel
+        {
+            get { return _gameLevel; }
+            set
+            {
+                _gameLevel = value;
+                RaisePropertyChanged(() => GameLevel);
             }
         }
 

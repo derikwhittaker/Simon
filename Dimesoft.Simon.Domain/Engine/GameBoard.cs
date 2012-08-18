@@ -39,8 +39,14 @@ namespace Dimesoft.Simon.Domain.Engine
 
             var attemptResult = moveManager.MakeMove(gameTile);
             var isAtEndOfSequence = moveManager.IsAtEndOfSequence;
+            var lastMoveIndex = moveManager.LastMoveIndex;
 
-            return new MoveResult{AttemptResult = attemptResult, IsAtEndOfSequence = isAtEndOfSequence};
+            return new MoveResult
+                       {
+                           AttemptResult = attemptResult, 
+                           IsAtEndOfSequence = isAtEndOfSequence,
+                           CurrentLevel = lastMoveIndex;
+                       };
         }
 
         public IList<GameTile> GetMoveList(Player player)
@@ -107,5 +113,10 @@ namespace Dimesoft.Simon.Domain.Engine
 
         private int RunningClockInSeconds { get; set; }
 
+        public void StopGame()
+        {
+            _gameClockTimer.Stop();
+            GamePlayStatus = GamePlayStatus.Completed;
+        }
     }
 }

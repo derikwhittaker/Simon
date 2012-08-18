@@ -21,5 +21,7 @@ namespace Dimesoft.Simon.Domain.Model
         public AttemptResult AttemptResult { get; set; }
 
         public bool IsAtEndOfSequence { get; set; }
+
+        public int CurrentLevel { get; set; }
     }
 }

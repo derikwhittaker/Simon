@@ -41,7 +41,9 @@ namespace Dimesoft.Simon.Domain.Engine
             var index = _random.Next(PossibleMoves.Count);
             var gameTile = PossibleMoves[index];
 
-            Debug.WriteLine("Index {0} Tile {1}", index, gameTile);
+            Shuffle(PossibleMoves);
+
+//            Debug.WriteLine("Index {0} Tile {1}", index, gameTile);
 
             return gameTile;
         }
@@ -50,6 +52,20 @@ namespace Dimesoft.Simon.Domain.Engine
         {
             get { return _possibleMoves; }
             private set { _possibleMoves = value; }
+        }
+
+        private void Shuffle<T>( IList<T> list)
+        {
+            var rng = new Random();
+            int n = list.Count;
+            while (n > 1)
+            {
+                n--;
+                int k = rng.Next(n + 1);
+                T value = list[k];
+                list[k] = list[n];
+                list[n] = value;
+            }
         }
     }
 }
